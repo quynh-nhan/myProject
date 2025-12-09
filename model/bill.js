@@ -1,28 +1,42 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
+
 const billScheme = new Schema({
-    id:{
-        type:ObjectId
+    CreatedAt: {
+        type: Date,
+        default: Date.now
     },
-    CreatAt:{
-        type: Date
+
+    UserID: {
+        type: ObjectId,
+        ref: "user",
+        required: true
     },
-    UserID:{
-        type:ObjectId,
-        ref:"user"
+
+    quantity: {
+        type: Number,
+        default: 0
     },
-    quanlity:{
-        type:Number
-    },
-    detail:
-     [
+
+    detail: [
         {
-            productID: { type: Schema.Types.ObjectId, ref: "product" },
-            Quantity: { type: Number, required: true },
-            Price: { type: Number }
+            productID: { 
+                type: ObjectId, 
+                ref: "product", 
+                required: true 
+            },
+            Quantity: { 
+                type: Number, 
+                required: true 
+            },
+            Price: { 
+                type: Number,
+                required: true
+            }
         }
     ]
 });
+
+// KHÔNG tự tạo id — để Mongoose tự sinh _id
 module.exports = mongoose.models.bill || mongoose.model('bill', billScheme);
-// category -----> categories

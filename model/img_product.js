@@ -9,4 +9,3 @@ const imgScheme = new Schema({
     },
 });
 module.exports = mongoose.models.image || mongoose.model('image', imgScheme);
-// category -----> categories
