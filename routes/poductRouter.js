@@ -36,9 +36,9 @@ router.get("/all", async function (req, res) {
 // xoa sp
  router.delete("/delete", async function (req,res) {
      const{id} = req.query;
-     const item = await productRouter.findById(id);
+     const item = await Product.findById(id);
      if(item){
-         await productRouter.findByIdAndDelete(id);
+         await Product.findByIdAndDelete(id);
           res.status(200).json({status:true,message:"xoa thanh cong"})
      }else{
          res.status(200).json({status:false,message:"Khong tim thay san pham"})
